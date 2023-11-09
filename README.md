@@ -72,3 +72,9 @@ merhaba:
 - example `DATABASE_URL="postgresql://postgres:240530@localhost:5432/my-symfony-project"`
 
 
+### Yeni bir entity oluşturulduğunda veya var olanlarında değişiklik yapıldığında
+
+```shell
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
+```
