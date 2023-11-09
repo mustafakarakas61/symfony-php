@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Kayıt Ol{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="container-fluid" style="background-color: #7ebffa; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 400px;">
+            <div class="card-header text-center bg-primary text-white">
+                <h2 align="center">Kayıt Ol</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="username">Kullanıcı Adı:</label>
+                        <input type="text" id="username" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta:</label>
+                        <input type="email" id="email" name="email" class="form-control" style="margin-left: 37px; margin-top: 5px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Şifre:</label>
+                        <input type="password" id="password" name="password" class="form-control" style="margin-left: 55px; margin-top: 5px;" required>
+                    </div>
+                    <div style="margin-top: 5px;text-align: center">
+                        <button type="submit" class="btn btn-primary btn-block">Kayıt Ol</button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 10px;">
+                        Zaten bir hesabınız var mı? <a href="{{ path('app_login') }}">Giriş yapın</a>
+                    </div>
+                </form>
+
+                {% if error %}
+                    <div class="alert alert-danger mt-3" style="margin-top: 4px;text-align: center;color: #9b4141;">
+                        Hata: {{ error.message }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ana Sayfa{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <style>
+            /* Sağ üst köşeye yerleştirme */
+            .logout-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li class="logout-button">
+                <a href="{{ path('app_logout') }}">Çıkış Yap</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block body %}{% endblock %}
+</main>
+<footer>
+    <p>&copy; 2023 Symfony Projesi</p>
+</footer>
+
+{% block javascripts %}
+    <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}
+</body>
+</html>

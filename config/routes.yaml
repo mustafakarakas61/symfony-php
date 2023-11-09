@@ -1,3 +1,18 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+lucky_number:
+  path: /lucky/number
+  controller: App\Controller\LuckyController::number
+
+blog_list:
+  path: /blog
+  controller: App\Controller\BlogController::list
+
+app_login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+
+app_logout:
+  path: /logout
+
+home:
+  path: /home
+  controller: App\Controller\HomeController::index
