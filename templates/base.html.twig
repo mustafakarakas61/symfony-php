@@ -3,15 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Ana Sayfa{% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <style>
-            /* Sağ üst köşeye yerleştirme */
-            .logout-button {
-                position: absolute;
-                top: 10px;
-                right: 10px;
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh; /* Bu, sayfanın minimum yüksekliğini tüm ekranı kaplamak için ayarlar. */
+            }
+
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            nav li {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+            }
+
+            .new-nav {
+                display: flex;
+                align-items: center;
+            }
+
+            .new-nav button {
+                background-color: #d9534f;
+                color: #fff;
+                padding: 8px 15px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            main {
+                flex: 1; /* Bu, sayfanın geri kalan kısmını kaplamak için ayarlar. */
+            }
+
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+            }
+            aside {
+                width: 200px; /* Sol kenar çubuğunun genişliği */
+                background-color: #f2f2f2;
+                padding: 10px;
+                min-height: 100vh;
             }
         </style>
     {% endblock %}
@@ -19,16 +85,41 @@
 <body>
 <header>
     <nav>
-        <ul>
-            <li class="logout-button">
-                <a href="{{ path('app_logout') }}">Çıkış Yap</a>
-            </li>
-        </ul>
+        <div style="margin: auto">
+            <ul>
+                <li>
+                    <a href="{{ path('app_home') }}">Ana Sayfa</a>
+                </li>
+                <li>
+                    <a href="{{ path('order_list') }}">Sipariş Listesi</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_about') }}">Hakkımızda</a>
+                </li>
+            </ul>
+        </div>
+        <div class="new-nav">
+            <button onclick="location.href='{{ path('app_logout') }}'">Çıkış Yap</button>
+        </div>
     </nav>
 </header>
-<main>
-    {% block body %}{% endblock %}
-</main>
+<div style="display: flex">
+    <aside>
+        {% block left_bar %}
+            <div style="background-color: #f2f2f2; padding: 10px;">
+                <h2>Sol Kenar Çubuğu Başlığı</h2>
+                <p>Bu bir örnek sol kenar çubuğu içeriğidir.</p>
+            </div>
+        {% endblock %}
+    </aside>
+    <main>
+        {% block body %}{% endblock %}
+
+        {% block order_list %}{% endblock %}
+
+        {% block about_us %} {% endblock %}
+    </main>
+</div>
 <footer>
     <p>&copy; 2023 Symfony Projesi</p>
 </footer>

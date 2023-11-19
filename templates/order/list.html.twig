@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block order_list %}
+    <h1>Sipariş Listesi</h1>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Müşteri</th>
+            <th>Sipariş Adı</th>
+            <th>Sipariş Tarihi</th>
+            <th>Miktar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer.username }}</td>
+                <td>{{ order.orderName }}</td>
+                <td>{{ order.orderDate|date('Y-m-d H:i:s') }}</td>
+                <td>{{ order.totalAmount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

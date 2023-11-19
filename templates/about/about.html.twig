@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block about_us %}
+    <section class="about-us-section">
+        <div class="about-us-container">
+            <div class="about-us-info">
+                <h2>Hakkımızda</h2>
+                <p>Merhaba! Ben <strong>Mustafa Karakaş</strong>, Memleketim Trabzon.</p>
+                <p>Backend Developer alanında çalışıyorum ve Bilgisayar Mühendisliği mezunuyum.</p>
+                <p>Üniversitem: Namık Kemal Üniversitesi</p>
+                <p>Şu anda <strong>MTM Medya Takip Merkezi'nde AR-GE'de Yazılımcı</strong> olarak görev yapıyorum.</p>
+                <p>İletişim için mail adresim: <a href="mailto:mail.m.karakas@gmail.com">mail.m.karakas@gmail.com</a></p>
+            </div>
+            <div class="about-us-image">
+                <img src="{{ asset('assets/myProfile.jpeg') }}" alt="Mustafa Karakaş">
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .about-us-section {
+            padding: 40px 0;
+            background-color: #f7f7f7;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        .about-us-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .about-us-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .about-us-info h2 {
+            color: #333;
+        }
+
+        .about-us-info p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .about-us-image {
+            flex: 1;
+        }
+
+        .about-us-image img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover; /* Resmin boyutunu korumak için object-fit özelliğini kullanabilirsiniz */
+        }
+    </style>
+{% endblock %}
