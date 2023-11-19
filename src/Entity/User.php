@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource]
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
@@ -37,7 +39,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     public function getId(): ?int
     {
@@ -72,8 +74,6 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-
-
     public function getPassword(): ?string
     {
         return $this->password;
@@ -81,7 +81,8 @@ class User implements UserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $password;
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $this->password = $hashedPassword;
 
         return $this;
     }
@@ -89,8 +90,7 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // Her kullanıcıya en az bir rol eklemek isterseniz, varsayılan olarak 'ROLE_USER' rolünü ekleyebilirsiniz.
-        $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
@@ -103,14 +103,10 @@ class User implements UserInterface
 
     public function getSalt()
     {
-        // Bu yöntem, parola tuzlama gerektirmiyorsa null dönebilir.
-        // Parolaları tuzlamak için özel bir mantık eklemek gerekebilir.
         return null;
     }
 
     public function eraseCredentials()
     {
-        // Bu yöntem, duyarlı bilgileri (örneğin, parolayı) temizlemek için kullanılır.
-        // Genellikle kullanıcı nesnesinin içinde bir şey yapmanıza gerek yoktur.
     }
 }

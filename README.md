@@ -78,3 +78,43 @@ merhaba:
 php bin/console doctrine:migrations:diff
 php bin/console doctrine:migrations:migrate
 ```
+
+### Caching
+
+``` shell
+php bin/console cache:clear
+```
+
+### Api Platform (Swagger)
+
+``` shell
+symfony composer require api
+```
+
+- api endpoint [https://127.0.0.1:8000/api/](https://127.0.0.1:8000/api/)
+
+- Yeni bir api eklendiğinde caching yapılması denenmeli
+
+### İlişkili entity içerisinde istek atımı
+
+``` json
+{
+  "customer": "/api/customers/1",
+  "orderName": "Urun example",
+  "totalAmount": "5"
+}
+```
+
+### Postman Üzerinden API'leri görme
+
+- Get isteği -> https://127.0.0.1:8000/api/ ve burada api'ler listelenir.
+- Customers api -> Get isteği -> https://127.0.0.1:8000/api/customers tüm customers listelendi.
+- 2 id'Li veriyi çekme -> Get isteği -> https://127.0.0.1:8000/api/customers/2
+- Yeni veri ekleme -> Post isteği -> https://127.0.0.1:8000/api/customers -> Body,Raw, JSON type, örnek veri :
+
+``` json
+{
+    "username":"mstf",
+    "email":"mstf@krks.com"
+}
+```
