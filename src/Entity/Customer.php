@@ -89,5 +89,14 @@ class Customer
         $this->orders = $orders;
     }
 
+    public function __toString()
+    {
+        return json_encode([
+            'id' => $this->id,
+            'username' => $this->username,
+            'email' => $this->email,
+            'orders' => $this->orders,
+        ]);
+    }
 
 }
