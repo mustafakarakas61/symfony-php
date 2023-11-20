@@ -18,6 +18,9 @@
                     <a href="{{ path('app_home') }}">Ana Sayfa</a>
                 </li>
                 <li>
+                    <a href="{{ path('customer_list') }}">Müşteriler</a>
+                </li>
+                <li>
                     <a href="{{ path('order_list') }}">Sipariş Listesi</a>
                 </li>
                 <li>
@@ -41,6 +44,11 @@
     </aside>
     <main>
         {% block body %}{% endblock %}
+
+{#        {% block customers_list %} {% endblock %}#}
+
+{#        {% block customer_add %} {% endblock %}#}
+        {% block customer_content %} {% endblock %}
 
         {% block order_list %}{% endblock %}
 

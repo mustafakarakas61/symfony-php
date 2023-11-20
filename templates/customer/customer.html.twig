@@ -1,18 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Giriş Yap{% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    {% endblock %}
-</head>
-<body>
-{% block body %}
+{% extends 'base.html.twig' %}
 
+{% block customer_content %}
+    <div style="display: flex; justify-content: center; height: 100vh; width: 100%;">
+        <div style="display: flex;  width: 80%; justify-content: space-between;">
+            <div style="flex: 1;">
+                {% block customers_list %}
+                    <h2>Müşteri Listesi</h2>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th >ID</th>
+                            <th >Müşteri Adı</th>
+                            <th >Müşteri Mail</th>
+                            <th >İşlemler</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for customer in customers %}
+                            <tr>
+                                <td>{{ customer.id }}</td>
+                                <td>{{ customer.username }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>
+                                    <a href="#">Düzenle</a>
+                                    |
+                                    <a href="{{ path('customer_delete', {'id': customer.id}) }}"
+                                       onclick="return confirm('Emin misiniz?')">Sil</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endblock %}
+            </div>
 
-
+            <div style="flex: 1;">
+                {% block customer_new %}
+                    <h2>Yeni Müşteri Ekle</h2>
+                    <form method="post" action="{{ path('customer_add') }}">
+                        <div class="form-group">
+                            <label for="new_customer_username">Müşteri Adı:</label>
+                            <input type="text" id="new_customer_username" name="new_customer_username"
+                                   class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_customer_email">Müşteri E-posta:</label>
+                            <input type="email" id="new_customer_email" name="new_customer_email" class="form-control"
+                                   required>
+                        </div>
+                        <div style="margin-top: 5px;text-align: center">
+                            <button type="submit" class="btn btn-primary btn-block">Müşteri Ekle</button>
+                        </div>
+                    </form>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
-</body>
-</html>
